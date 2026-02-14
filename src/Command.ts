@@ -8,6 +8,7 @@ export abstract class Command {
 
     protected input!: Input;
     protected output!: Output;
+    protected registry!: any;
 
     public setInput(input: Input) {
         this.input = input;
@@ -15,6 +16,10 @@ export abstract class Command {
 
     public setOutput(output: Output) {
         this.output = output;
+    }
+
+    public setRegistry(registry: any) {
+        this.registry = registry;
     }
 
     public abstract handle(): Promise<any> | any;
