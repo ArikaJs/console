@@ -11,7 +11,7 @@ It allows packages and applications to define, register, and execute CLI command
 
 - **Command registration & discovery**: Effortlessly manage CLI commands
 - **Argument and option parsing**: Structured input handling
-- **Signature-based command definitions**: Laravel-style command signatures
+- **Signature-based command definitions**: Intuitive command signatures
 - **Dependency injection for commands**: Resolving commands via the service container
 - **Input/output helpers**: Simplified interaction with terminal
 - **Extensible command lifecycle**: Hooks for pre/post execution
