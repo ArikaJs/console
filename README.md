@@ -149,6 +149,23 @@ console/
 
 ---
 
+## 🏗 Architecture
+
+```text
+console/
+├── src/
+│   ├── Command.ts
+│   ├── CommandRegistry.ts
+│   ├── index.ts
+│   ├── Input.ts
+│   ├── Output.ts
+│   └── Parser.ts
+├── tests/
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
 ## 📄 License
 
 `@arikajs/console` is open-source software licensed under the **MIT License**.
