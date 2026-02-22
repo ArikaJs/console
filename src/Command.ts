@@ -55,6 +55,38 @@ export abstract class Command {
         this.output.comment(message);
     }
 
+    protected success(message: string) {
+        this.output.success(message);
+    }
+
+    protected table(headers: string[], rows: any[][]) {
+        this.output.table(headers, rows);
+    }
+
+    protected async confirm(question: string, defaultAction: boolean = true): Promise<boolean> {
+        return await this.output.confirm(question, defaultAction);
+    }
+
+    protected async ask(question: string, defaultValue: string | null = null): Promise<string | null> {
+        return await this.output.ask(question, defaultValue);
+    }
+
+    protected progressStart(total: number) {
+        this.output.progressStart(total);
+    }
+
+    protected progressAdvance(step: number = 1) {
+        this.output.progressAdvance(step);
+    }
+
+    protected progressFinish() {
+        this.output.progressFinish();
+    }
+
+    protected async task(message: string, task: () => Promise<any> | any): Promise<any> {
+        return await this.output.task(message, task);
+    }
+
     protected write(message: string) {
         this.output.write(message);
     }

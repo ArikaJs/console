@@ -10,8 +10,8 @@
     "build:tests": "tsc -p tsconfig.test.json",
     "clean": "rm -rf dist",
     "prepare": "echo skip",
-    "test": "npm run build && npm run build:tests && node scripts/fix-test-imports.js && node --test 'dist/tests/**/*.test.js'",
-    "test:watch": "npm run build && npm run build:tests && node --test --watch 'dist/tests/**/*.test.js'"
+    "test": "npx tsx --test tests/**/*.test.ts",
+    "test:watch": "npx tsx --test --watch tests/**/*.test.ts"
   },
   "files": [
     "dist"
@@ -37,7 +37,8 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.24",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "tsx": "^4.7.1"
   },
   "author": "Prakash Tank"
 }

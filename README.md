@@ -10,10 +10,11 @@ It allows packages and applications to define, register, and execute CLI command
 ## ✨ Features
 
 - **Command registration & discovery**: Effortlessly manage CLI commands
-- **Argument and option parsing**: Structured input handling
-- **Signature-based command definitions**: Intuitive command signatures
-- **Dependency injection for commands**: Resolving commands via the service container
-- **Input/output helpers**: Simplified interaction with terminal
+- **Lazy Loading**: High performance; commands are only loaded when executed
+- **Signature-based definitions**: Intuitive signatures with default values `{name=default}`
+- **Rich Output Components**: Tables, progress bars, and status indicators
+- **Interactive Prompts**: Confirmations and question handling
+- **Dependency injection**: Resolving commands via the service container
 - **Extensible command lifecycle**: Hooks for pre/post execution
 - **TypeScript-first design**: Typed arguments and options
 
@@ -53,10 +54,62 @@ export class QueueWorkCommand extends Command {
 
 ### 🧠 Command Signatures
 
-`command:name {argument} {--option}`
+`command:name {argument} {argument?} {argument=default} {--option} {--mode=val}`
 
-Example:
-`make:controller UserController`
+| Type | Syntax | Description |
+| :--- | :--- | :--- |
+| **Required** | `{user}` | Command fails if missing |
+| **Optional** | `{user?}` | Returns `null` if missing |
+| **Default** | `{user=guest}` | Returns `"guest"` if missing |
+| **Option** | `{--force}` | Boolean (true/false) |
+| **Option Val** | `{--mode=}` | Expects a value |
+| **Opt Default** | `{--mode=prod}` | Defaults to `"prod"` |
+
+---
+
+## 🎨 Rich Outputs & Interaction
+
+### 📊 Tables
+```ts
+this.table(['Name', 'Email'], [
+    ['Prakash', 'prakash@example.com'],
+    ['Arika', 'arika@arikajs.com']
+]);
+```
+
+### ⏳ Progress Bars
+```ts
+this.progressStart(100);
+// ...
+this.progressAdvance(10);
+// ...
+this.progressFinish();
+```
+
+### ⚡ Tasks
+```ts
+await this.task('Migrating database', async () => {
+    await db.migrate();
+});
+```
+
+### ❓ Interaction
+```ts
+if (await this.confirm('Do you want to proceed?')) {
+    const name = await this.ask('What is your name?', 'Guest');
+    this.success(`Hello ${name}`);
+}
+```
+
+---
+
+## 🚀 Performance: Lazy Registration
+
+For large applications, register commands lazily to avoid loading classes until they are needed:
+
+```ts
+registry.registerLazy('make:controller {name}', 'Create a controller', () => import('./Commands/MakeController'));
+```
 
 ---
 
