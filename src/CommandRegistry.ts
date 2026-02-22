@@ -7,9 +7,14 @@ import { Output } from './Output';
 export class CommandRegistry {
     protected commands: Map<string, any> = new Map();
     protected resolver: (commandClass: any) => Command;
+    protected container: any;
 
     constructor(resolver?: (commandClass: any) => Command) {
         this.resolver = resolver || ((cls) => new cls());
+    }
+
+    public setContainer(container: any) {
+        this.container = container;
     }
 
     /**
@@ -68,6 +73,10 @@ export class CommandRegistry {
         command.setInput(input);
         command.setOutput(output);
         command.setRegistry(this);
+
+        if (this.container) {
+            command.setContainer(this.container);
+        }
 
         await command.initialize();
 

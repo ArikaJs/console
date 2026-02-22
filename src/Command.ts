@@ -9,6 +9,7 @@ export abstract class Command {
     protected input!: Input;
     protected output!: Output;
     protected registry!: any;
+    protected container: any;
 
     public setInput(input: Input) {
         this.input = input;
@@ -20,6 +21,10 @@ export abstract class Command {
 
     public setRegistry(registry: any) {
         this.registry = registry;
+    }
+
+    public setContainer(container: any) {
+        this.container = container;
     }
 
     public abstract handle(): Promise<any> | any;
