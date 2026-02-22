@@ -129,26 +129,6 @@ This package focuses only on command behavior, not binaries.
 
 ---
 
-## 🧠 Architecture (High Level)
-
-```
-console/
-├── src/
-│   ├── Command.ts
-│   ├── CommandRegistry.ts
-│   ├── Input.ts
-│   ├── Output.ts
-│   ├── Parser.ts
-│   └── index.ts
-├── tests/
-├── package.json
-├── tsconfig.json
-├── README.md
-└── LICENSE
-```
-
----
-
 ## 🏗 Architecture
 
 ```text
